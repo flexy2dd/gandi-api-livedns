@@ -54,7 +54,7 @@ class GandiApiLiveDNS:
         try:
             resp = requests.get(url, timeout=self.timeout)
 
-            self._logger.debug("Real IP: %s - %s", resp.status_code, resp.raw)
+            self._logger.debug("Real IP: %s - %s", resp.status_code, resp.text)
             if resp.status_code == 200:
                 return resp.text
 
@@ -86,7 +86,7 @@ class GandiApiLiveDNS:
         try:            
             resp = requests.get(url, headers=headers, timeout=self.timeout)
 
-            self._logger.debug("Getting %s: (%s) %s", url, resp.status_code, resp.raw)
+            self._logger.debug("Getting %s: (%s) %s", url, resp.status_code, resp.text)
 
             if resp.status_code == 200:
                 jsonResponse = resp.json()
@@ -96,7 +96,7 @@ class GandiApiLiveDNS:
                 error = "record_notfound"
             else:
                 self._logger.debug(
-                    "Getting %s failed: (%s) %s", url, resp.status_code, resp.raw
+                    "Getting %s failed: (%s) %s", url, resp.status_code, resp.text
                 )
                 error = "cannot_connect"
 
