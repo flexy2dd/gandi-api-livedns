@@ -79,7 +79,7 @@ class GandiApiLiveDNS:
         }
 
         url = GANDI_LIVEDNS_API_URL.format(**url_params)
-        headers = {'Authorization': f"Apikey {self.apikey}"}
+        headers = {'Authorization': f"Bearer {self.apikey}"}
 
         self._logger.debug("Request url: %s", url)
 
@@ -141,7 +141,7 @@ class GandiApiLiveDNS:
 
         url = GANDI_LIVEDNS_API_URL.format(**url_params)
         json = {"rrset_ttl": self.rrttl, "rrset_values": [current_ip]}
-        headers = {'Authorization': f"Apikey {self.apikey}"}
+        headers = {'Authorization': f"Bearer {self.apikey}"}
 
         self._logger.debug("Update DNS record")
         try:
